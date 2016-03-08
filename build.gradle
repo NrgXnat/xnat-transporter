@@ -1,0 +1,38 @@
+group 'org.nrg'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'xnat'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+def vXnat = '1.7.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven {
+        url 'http://nrgxnat.artifactoryonline.com/nrgxnat/libs-release'
+        name 'XNAT Release Repository'
+    }
+    maven {
+        url 'http://nrgxnat.artifactoryonline.com/nrgxnat/libs-snapshot'
+        name 'XNAT Snapshot Repository'
+    }
+    maven {
+        url 'http://nrgxnat.artifactoryonline.com/nrgxnat/ext-release'
+        name 'XNAT External Release Repository'
+    }
+}
+
+dependencies {
+    compile ("org.nrg.xnat:web:${vXnat}") {
+        transitive = false
+    }
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

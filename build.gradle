@@ -1,10 +1,28 @@
-group 'org.nrg'
-version '1.0-SNAPSHOT'
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            url 'https://nrgxnat.artifactoryonline.com/nrgxnat/libs-release'
+            name 'XNAT Release Repository'
+        }
+        maven {
+            url 'https://nrgxnat.artifactoryonline.com/nrgxnat/libs-snapshot'
+            name 'XNAT Snapshot Repository'
+        }
+    }
+    dependencies {
+        classpath "org.nrg.xnat.build:gradle-xnat-plugin:1.7.0-SNAPSHOT"
+    }
+}
 
 apply plugin: 'java'
 apply plugin: 'xnat'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+
+group 'org.nrg'
+version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7

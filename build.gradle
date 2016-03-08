@@ -28,6 +28,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 def vXnat = '1.7.0-SNAPSHOT'
+def vSpring = '4.2.4.RELEASE'
 
 repositories {
     mavenLocal()
@@ -54,6 +55,9 @@ dependencies {
     compile ("org.nrg.xdat:core:${vXnat}") {
         transitive = false
     }
+
+    compile "org.springframework:spring-core:${vSpring}"
+    compile "org.springframework:spring-context:${vSpring}"
 
     compile "com.google.guava:guava:18.0"
 

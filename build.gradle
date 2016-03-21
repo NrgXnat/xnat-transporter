@@ -50,10 +50,13 @@ repositories {
 }
 
 dependencies {
-//    compile ("org.nrg.xnat:web:${vXnat}") {
-//        transitive = false
-//    }
+    compile ("org.nrg.xnat:web:${vXnat}") {
+        transitive = false
+    }
     compile ("org.nrg.xdat:core:${vXnat}") {
+        transitive = false
+    }
+    compile ("org.nrg.xdat:beans:${vXnat}") {
         transitive = false
     }
     compile ("org.nrg:framework:${vXnat}")

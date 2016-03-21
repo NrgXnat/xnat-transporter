@@ -1,14 +1,14 @@
 package org.nrg.transporter;
 
-import org.nrg.xft.ItemI;
+import org.nrg.xft.XFTItem;
 
 import java.nio.file.Path;
 import java.util.List;
 
 public interface TransportService {
-    Path transport(ItemI item, String destinationName);
+    List<Path> transport(String destinationName, XFTItem... items);
 
-    List<Path> transport(List<ItemI> items, String destinationName);
+    List<Path> transport(String destinationName, Path... file);
 
     void registerDestination(Destination destination);
 

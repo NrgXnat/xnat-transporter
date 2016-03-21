@@ -1,6 +1,9 @@
 package org.nrg.transporter;
 
-import org.nrg.xft.ItemI;
+import com.google.common.collect.Lists;
+import org.nrg.xdat.om.XnatMrsessiondata;
+import org.nrg.xft.XFTItem;
+import org.nrg.xnat.turbine.utils.ArcSpecManager;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
@@ -9,13 +12,21 @@ import java.util.List;
 @Service
 public class TransportServiceImpl implements TransportService {
     @Override
-    public Path transport(final ItemI item, final String destinationName) {
+    public List<Path> transport(final String destinationName, XFTItem... items) {
+        for (final XFTItem item : items) {
+            if (item.getXSIType().equals("xnat:mrSessionData")) {
+                final XnatMrsessiondata session = new XnatMrsessiondata(item);
+
+                ArcSpecManager.GetInstance().getArchivePathForProject(session.getProject());
+                session.getFileResources()
+            }
+        }
         return null;
     }
 
     @Override
-    public List<Path> transport(final List<ItemI> items, final String destinationName) {
-        return null;
+    public List<Path> transport(final String destinationName, final Path... files) {
+        return Lists.newArrayList(files);
     }
 
     @Override

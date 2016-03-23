@@ -18,7 +18,7 @@ public class TransportServiceImpl implements TransportService {
         for (final XFTItem item : items) {
             if (item.getXSIType().equals("xnat:mrSessionData")) {
                 final XnatMrsessiondata session = new XnatMrsessiondata(item);
-                    paths.add(Paths.get(session.getArchivePath()));
+                    paths.add(Paths.get(session.getRelativeArchivePath()));
             }
         }
         return paths;

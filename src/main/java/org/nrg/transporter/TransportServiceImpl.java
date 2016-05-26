@@ -30,6 +30,11 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
+    public Path transport(final String destinationName, final Path file) {
+        return file;
+    }
+
+    @Override
     public void registerDestination(final Destination destination) {
 
     }

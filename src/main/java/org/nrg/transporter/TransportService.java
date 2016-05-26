@@ -11,6 +11,8 @@ public interface TransportService {
 
     List<Path> transport(String destinationName, Path... file);
 
+    Path transport(String destinationName, Path file);
+
     void registerDestination(Destination destination);
 
     Destination getDestinationByName(String destinationName);

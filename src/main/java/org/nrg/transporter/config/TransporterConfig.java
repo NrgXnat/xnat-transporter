@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@XnatPlugin(value = "transporter", description = "XNAT Transporter", config = TransporterConfig.class)
+@XnatPlugin(value = "transporter", description = "XNAT Transporter")
 @ComponentScan("org.nrg.transporter")
 public class TransporterConfig {
 }

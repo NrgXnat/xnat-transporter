@@ -5,13 +5,18 @@ import org.nrg.xft.XFTItem;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 public interface TransportService {
     List<Path> transport(String destinationName, XFTItem... items) throws UnknownPrimaryProjectException;
 
-    List<Path> transport(String destinationName, Path... file);
+    Map<Path, Path> transport(String destinationName, Path... file);
 
     Path transport(String destinationName, Path file);
+
+    Path getWritableDirectory(String destinationName);
+
+    List<Path> getWritableDirectories(String destinationName, final int howMany);
 
     void registerDestination(Destination destination);
 

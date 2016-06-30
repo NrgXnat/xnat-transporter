@@ -74,9 +74,6 @@ dependencies {
         transitive = false
     }
     compile "org.nrg.xdat:core:${vXnat}"
-    compile ("org.nrg.xdat:beans:${vXnat}") {
-        transitive = false
-    }
     compile ("org.nrg:framework:${vXnat}")
 
     compile "org.springframework:spring-core:${vSpring}"

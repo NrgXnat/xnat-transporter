@@ -5,7 +5,9 @@ import com.google.common.collect.Maps;
 import org.nrg.xdat.XDAT;
 import org.nrg.xdat.om.XnatMrsessiondata;
 import org.nrg.xdat.om.base.BaseXnatExperimentdata.UnknownPrimaryProjectException;
+import org.nrg.xdat.preferences.SiteConfigPreferences;
 import org.nrg.xft.XFTItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
@@ -16,6 +18,8 @@ import java.util.UUID;
 
 @Service
 public class TransportServiceImpl implements TransportService {
+    @Autowired private SiteConfigPreferences siteConfigPreferences;
+
     @Override
     public List<Path> transport(final String destinationName, XFTItem... items) throws UnknownPrimaryProjectException {
         List<Path> paths = Lists.newArrayList();
@@ -46,7 +50,7 @@ public class TransportServiceImpl implements TransportService {
     public Path getWritableDirectory(final String destinationName) {
         // TODO The destination should define where its build space is
 
-        final String buildPathStr = XDAT.getSiteConfigPreferences().getBuildPath();
+        final String buildPathStr = siteConfigPreferences.getBuildPath();
 
         final String s = UUID.randomUUID().toString();
 

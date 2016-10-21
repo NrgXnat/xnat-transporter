@@ -7,6 +7,8 @@ import org.nrg.xdat.om.XnatMrsessiondata;
 import org.nrg.xdat.om.base.BaseXnatExperimentdata.UnknownPrimaryProjectException;
 import org.nrg.xdat.preferences.SiteConfigPreferences;
 import org.nrg.xft.XFTItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.UUID;
 
 @Service
 public class TransportServiceImpl implements TransportService {
+    private static final Logger log = LoggerFactory.getLogger(TransportServiceImpl.class);
+
     @Autowired private SiteConfigPreferences siteConfigPreferences;
 
     @Override
@@ -34,6 +38,9 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public Map<Path, Path> transport(final String destinationName, final Path... files) {
+        if (log.isDebugEnabled()) {
+            log.debug("Transporting all paths to themselves.");
+        }
         final Map<Path, Path> sourcePathToDestinationPath = Maps.newHashMap();
         for (final Path file : files) {
             sourcePathToDestinationPath.put(file, file);
@@ -43,6 +50,9 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public Path transport(final String destinationName, final Path file) {
+        if (log.isDebugEnabled()) {
+            log.debug(String.format("Transporting file %s to itself.", file));
+        }
         return file;
     }
 
@@ -55,6 +65,9 @@ public class TransportServiceImpl implements TransportService {
         final String s = UUID.randomUUID().toString();
 
         final Path buildPath = Paths.get(buildPathStr, s);
+        if (log.isDebugEnabled()) {
+            log.debug("Creating writable directory " + buildPath.toString());
+        }
         if (buildPath.toFile().mkdirs()) {
             return buildPath;
         }

@@ -1,33 +1,16 @@
-import org.apache.tools.ant.taskdefs.Jar
-
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-        maven {
-            url 'https://nrgxnat.artifactoryonline.com/nrgxnat/libs-release'
-            name 'XNAT Release Repository'
-        }
-        maven {
-            url 'https://nrgxnat.artifactoryonline.com/nrgxnat/libs-snapshot'
-            name 'XNAT Snapshot Repository'
-        }
-    }
-    dependencies {
-        classpath "org.nrg.xnat.build:gradle-xnat-plugin:1.7.0-SNAPSHOT"
-    }
-}
+group 'org.nrg'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-group 'org.nrg'
-version '1.0-SNAPSHOT'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
-def vXnat = '1.7.0-SNAPSHOT'
-def vSpring = '4.2.4.RELEASE'
+def vXnat = '1.7.0'
+def vSpring = '4.2.7.RELEASE'
 
 repositories {
     mavenLocal()
@@ -47,9 +30,6 @@ repositories {
     }
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
 dependencies {
     compile ("org.nrg.xnat:web:${vXnat}") {
         transitive = false
@@ -58,7 +38,7 @@ dependencies {
         transitive = false
     }
     compile "org.nrg.xdat:core:${vXnat}"
-    compile ("org.nrg:framework:${vXnat}")
+    compile "org.nrg:framework:${vXnat}"
 
     compile "org.springframework:spring-core:${vSpring}"
     compile "org.springframework:spring-context:${vSpring}"

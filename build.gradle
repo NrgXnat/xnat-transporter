@@ -9,7 +9,7 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def vXnat = '1.7.0'
+def vXnat = '1.7.1'
 def vSpring = '4.2.7.RELEASE'
 
 repositories {

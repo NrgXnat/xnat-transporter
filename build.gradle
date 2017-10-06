@@ -1,16 +1,27 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
 group 'org.nrg'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def vXnat = '1.7.1'
-def vSpring = '4.2.7.RELEASE'
+def vXnat = '1.7.3'
 
 repositories {
     mavenLocal()
@@ -30,22 +41,29 @@ repositories {
     }
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.nrg:parent:${vXnat}"
+    }
+}
+
 dependencies {
-    compile ("org.nrg.xnat:web:${vXnat}") {
+    compile ("org.nrg.xnat:web") {
         transitive = false
     }
-    compile ("org.nrg.xnat:xnat-data-models:${vXnat}") {
+    compile ("org.nrg.xnat:xnat-data-models") {
         transitive = false
     }
-    compile "org.nrg.xdat:core:${vXnat}"
-    compile "org.nrg:framework:${vXnat}"
+    compile "org.nrg.xdat:core"
+    compile "org.nrg:framework"
 
-    compile "org.springframework:spring-core:${vSpring}"
-    compile "org.springframework:spring-context:${vSpring}"
+    compile "org.springframework:spring-core"
+    compile "org.springframework:spring-context"
 
-    compile "com.google.guava:guava:19.0"
+    compile "com.google.guava:guava"
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit'
+
 }
 
 //task sourceJar(type: Jar, dependsOn: classes) {
